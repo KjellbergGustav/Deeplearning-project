@@ -45,7 +45,7 @@ if args["noise"] == "gaussian":
     trainXNoisy, testXNoisy = Noises.gaussian(trainX, testX)
 elif args["noise"] == "speckle":
     trainXNoisy, testXNoisy = Noises.speckle(trainX, testX)
-elif args["noise"] == "s&p":
+elif args["noise"] == "saltAndPepper":
     trainXNoisy, testXNoisy = Noises.salt_and_pepper(trainX, testX)
 elif args["noise"] == "block":
     trainXNoisy, testXNoisy = Noises.block(trainX, testX)
