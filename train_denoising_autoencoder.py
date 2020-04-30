@@ -17,9 +17,9 @@ import cv2
 ap = argparse.ArgumentParser()
 ap.add_argument("-s", "--samples", type=int, default=8,
     help="# number of samples to visualize when decoding")
-ap.add_argument("-o", "--output", type=str, default="output.png",
+ap.add_argument("-o", "--output", type=str, default="outputs/output.png",
     help="path to output visualization file")
-ap.add_argument("-p", "--plot", type=str, default="plot.png",
+ap.add_argument("-p", "--plot", type=str, default="plots/plot.png",
     help="path to output plot file")
 ap.add_argument("-n", "--noise", type=str, default="gaussian",
     help="type of noise to add")
