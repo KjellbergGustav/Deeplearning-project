@@ -1,0 +1,401 @@
+train_all.bat
+
+C:\Users\Maria Lindblad\Documents\KTH\Årskurs 4\Deep Learning\Deeplearning-project>python train_denoising_autoencoder.py --output outputs/output_denoising_gaussian.png --plot plots/plot_denoising_gaussian.png --noise gaussian
+[INFO] loading MNIST dataset...
+[INFO] building autoencoder...
+2020-05-03 21:49:43.508359: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+Train on 60000 samples, validate on 10000 samples
+Epoch 1/25
+60000/60000 [==============================] - 146s 2ms/sample - loss: 0.0291 - val_loss: 0.0197
+Epoch 2/25
+60000/60000 [==============================] - 110s 2ms/sample - loss: 0.0188 - val_loss: 0.0180
+Epoch 3/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0177 - val_loss: 0.0176
+Epoch 4/25
+60000/60000 [==============================] - 112s 2ms/sample - loss: 0.0172 - val_loss: 0.0168
+Epoch 5/25
+60000/60000 [==============================] - 111s 2ms/sample - loss: 0.0168 - val_loss: 0.0175
+Epoch 6/25
+60000/60000 [==============================] - 110s 2ms/sample - loss: 0.0164 - val_loss: 0.0167
+Epoch 7/25
+60000/60000 [==============================] - 109s 2ms/sample - loss: 0.0162 - val_loss: 0.0162
+Epoch 8/25
+60000/60000 [==============================] - 111s 2ms/sample - loss: 0.0160 - val_loss: 0.0161
+Epoch 9/25
+60000/60000 [==============================] - 111s 2ms/sample - loss: 0.0158 - val_loss: 0.0163
+Epoch 10/25
+60000/60000 [==============================] - 113s 2ms/sample - loss: 0.0157 - val_loss: 0.0162
+Epoch 11/25
+60000/60000 [==============================] - 110s 2ms/sample - loss: 0.0155 - val_loss: 0.0165
+Epoch 12/25
+60000/60000 [==============================] - 113s 2ms/sample - loss: 0.0154 - val_loss: 0.0161
+Epoch 13/25
+60000/60000 [==============================] - 110s 2ms/sample - loss: 0.0153 - val_loss: 0.0159
+Epoch 14/25
+60000/60000 [==============================] - 115s 2ms/sample - loss: 0.0152 - val_loss: 0.0162
+Epoch 15/25
+60000/60000 [==============================] - 113s 2ms/sample - loss: 0.0151 - val_loss: 0.0166
+Epoch 16/25
+60000/60000 [==============================] - 112s 2ms/sample - loss: 0.0150 - val_loss: 0.0158
+Epoch 17/25
+60000/60000 [==============================] - 113s 2ms/sample - loss: 0.0149 - val_loss: 0.0160
+Epoch 18/25
+60000/60000 [==============================] - 112s 2ms/sample - loss: 0.0149 - val_loss: 0.0159
+Epoch 19/25
+60000/60000 [==============================] - 113s 2ms/sample - loss: 0.0148 - val_loss: 0.0159
+Epoch 20/25
+60000/60000 [==============================] - 112s 2ms/sample - loss: 0.0147 - val_loss: 0.0155
+Epoch 21/25
+60000/60000 [==============================] - 111s 2ms/sample - loss: 0.0147 - val_loss: 0.0155
+Epoch 22/25
+60000/60000 [==============================] - 112s 2ms/sample - loss: 0.0146 - val_loss: 0.0156
+Epoch 23/25
+60000/60000 [==============================] - 113s 2ms/sample - loss: 0.0146 - val_loss: 0.0161
+Epoch 24/25
+60000/60000 [==============================] - 111s 2ms/sample - loss: 0.0145 - val_loss: 0.0161
+Epoch 25/25
+60000/60000 [==============================] - 111s 2ms/sample - loss: 0.0145 - val_loss: 0.0157
+[INFO] making predictions...
+
+C:\Users\Maria Lindblad\Documents\KTH\Årskurs 4\Deep Learning\Deeplearning-project>python train_denoising_autoencoder.py --output outputs/output_denoising_speckle.png --plot plots/plot_denoising_speckle.png --noise speckle
+[INFO] loading MNIST dataset...
+[INFO] building autoencoder...
+2020-05-03 22:36:56.825804: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+Train on 60000 samples, validate on 10000 samples
+Epoch 1/25
+60000/60000 [==============================] - 114s 2ms/sample - loss: 0.0216 - val_loss: 0.0138
+Epoch 2/25
+60000/60000 [==============================] - 109s 2ms/sample - loss: 0.0127 - val_loss: 0.0116
+Epoch 3/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0115 - val_loss: 0.0112
+Epoch 4/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0109 - val_loss: 0.0104
+Epoch 5/25
+60000/60000 [==============================] - 114s 2ms/sample - loss: 0.0105 - val_loss: 0.0105
+Epoch 6/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0101 - val_loss: 0.0103
+Epoch 7/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0099 - val_loss: 0.0100
+Epoch 8/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0097 - val_loss: 0.0106
+Epoch 9/25
+60000/60000 [==============================] - 110s 2ms/sample - loss: 0.0095 - val_loss: 0.0097
+Epoch 10/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0094 - val_loss: 0.0094
+Epoch 11/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0093 - val_loss: 0.0094
+Epoch 12/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0092 - val_loss: 0.0094
+Epoch 13/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0091 - val_loss: 0.0092
+Epoch 14/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0090 - val_loss: 0.0096
+Epoch 15/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0089 - val_loss: 0.0092
+Epoch 16/25
+60000/60000 [==============================] - 109s 2ms/sample - loss: 0.0089 - val_loss: 0.0091
+Epoch 17/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0088 - val_loss: 0.0091
+Epoch 18/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0088 - val_loss: 0.0091
+Epoch 19/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0087 - val_loss: 0.0089
+Epoch 20/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0087 - val_loss: 0.0091
+Epoch 21/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0086 - val_loss: 0.0089
+Epoch 22/25
+60000/60000 [==============================] - 113s 2ms/sample - loss: 0.0086 - val_loss: 0.0089
+Epoch 23/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0085 - val_loss: 0.0089
+Epoch 24/25
+60000/60000 [==============================] - 109s 2ms/sample - loss: 0.0085 - val_loss: 0.0089
+Epoch 25/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0085 - val_loss: 0.0090
+[INFO] making predictions...
+
+C:\Users\Maria Lindblad\Documents\KTH\Årskurs 4\Deep Learning\Deeplearning-project>python train_denoising_autoencoder.py --output outputs/output_denoising_saltAndPepper.png --plot plots/plot_denoising_saltAndPepper.png --noise saltAndPepper
+[INFO] loading MNIST dataset...
+[INFO] building autoencoder...
+2020-05-03 23:22:34.085296: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+Train on 60000 samples, validate on 10000 samples
+Epoch 1/25
+60000/60000 [==============================] - 112s 2ms/sample - loss: 0.0224 - val_loss: 0.0149
+Epoch 2/25
+60000/60000 [==============================] - 106s 2ms/sample - loss: 0.0141 - val_loss: 0.0133
+Epoch 3/25
+60000/60000 [==============================] - 109s 2ms/sample - loss: 0.0131 - val_loss: 0.0128
+Epoch 4/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0125 - val_loss: 0.0120
+Epoch 5/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0121 - val_loss: 0.0118
+Epoch 6/25
+60000/60000 [==============================] - 109s 2ms/sample - loss: 0.0117 - val_loss: 0.0116
+Epoch 7/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0115 - val_loss: 0.0115
+Epoch 8/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0112 - val_loss: 0.0114
+Epoch 9/25
+60000/60000 [==============================] - 106s 2ms/sample - loss: 0.0110 - val_loss: 0.0114
+Epoch 10/25
+60000/60000 [==============================] - 109s 2ms/sample - loss: 0.0109 - val_loss: 0.0110
+Epoch 11/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0107 - val_loss: 0.0109
+Epoch 12/25
+60000/60000 [==============================] - 109s 2ms/sample - loss: 0.0105 - val_loss: 0.0106
+Epoch 13/25
+60000/60000 [==============================] - 111s 2ms/sample - loss: 0.0103 - val_loss: 0.0104
+Epoch 14/25
+60000/60000 [==============================] - 110s 2ms/sample - loss: 0.0101 - val_loss: 0.0105
+Epoch 15/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0100 - val_loss: 0.0103
+Epoch 16/25
+60000/60000 [==============================] - 109s 2ms/sample - loss: 0.0099 - val_loss: 0.0102
+Epoch 17/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0098 - val_loss: 0.0105
+Epoch 18/25
+60000/60000 [==============================] - 109s 2ms/sample - loss: 0.0097 - val_loss: 0.0102
+Epoch 19/25
+60000/60000 [==============================] - 110s 2ms/sample - loss: 0.0096 - val_loss: 0.0101
+Epoch 20/25
+60000/60000 [==============================] - 109s 2ms/sample - loss: 0.0096 - val_loss: 0.0099
+Epoch 21/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0095 - val_loss: 0.0099
+Epoch 22/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0094 - val_loss: 0.0100
+Epoch 23/25
+60000/60000 [==============================] - 106s 2ms/sample - loss: 0.0094 - val_loss: 0.0099
+Epoch 24/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0093 - val_loss: 0.0098
+Epoch 25/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0093 - val_loss: 0.0098
+[INFO] making predictions...
+
+C:\Users\Maria Lindblad\Documents\KTH\Årskurs 4\Deep Learning\Deeplearning-project>python train_denoising_autoencoder.py --output outputs/output_denoising_block.png --plot plots/plot_denoising_block.png --noise block
+[INFO] loading MNIST dataset...
+[INFO] building autoencoder...
+2020-05-04 00:07:55.267467: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+Train on 60000 samples, validate on 10000 samples
+Epoch 1/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0186 - val_loss: 0.0784
+Epoch 2/25
+60000/60000 [==============================] - 109s 2ms/sample - loss: 0.0102 - val_loss: 0.0839
+Epoch 3/25
+60000/60000 [==============================] - 106s 2ms/sample - loss: 0.0092 - val_loss: 0.0809
+Epoch 4/25
+60000/60000 [==============================] - 105s 2ms/sample - loss: 0.0086 - val_loss: 0.0788
+Epoch 5/25
+60000/60000 [==============================] - 110s 2ms/sample - loss: 0.0083 - val_loss: 0.0815
+Epoch 6/25
+60000/60000 [==============================] - 109s 2ms/sample - loss: 0.0080 - val_loss: 0.0801
+Epoch 7/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0078 - val_loss: 0.0830
+Epoch 8/25
+60000/60000 [==============================] - 106s 2ms/sample - loss: 0.0076 - val_loss: 0.0812
+Epoch 9/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0075 - val_loss: 0.0779
+Epoch 10/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0073 - val_loss: 0.0822
+Epoch 11/25
+60000/60000 [==============================] - 106s 2ms/sample - loss: 0.0072 - val_loss: 0.0839
+Epoch 12/25
+60000/60000 [==============================] - 106s 2ms/sample - loss: 0.0072 - val_loss: 0.0848
+Epoch 13/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0071 - val_loss: 0.0808
+Epoch 14/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0070 - val_loss: 0.0829
+Epoch 15/25
+60000/60000 [==============================] - 105s 2ms/sample - loss: 0.0069 - val_loss: 0.0830
+Epoch 16/25
+60000/60000 [==============================] - 105s 2ms/sample - loss: 0.0069 - val_loss: 0.0863
+Epoch 17/25
+60000/60000 [==============================] - 105s 2ms/sample - loss: 0.0068 - val_loss: 0.0835
+Epoch 18/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0068 - val_loss: 0.0853
+Epoch 19/25
+60000/60000 [==============================] - 111s 2ms/sample - loss: 0.0067 - val_loss: 0.0844
+Epoch 20/25
+60000/60000 [==============================] - 109s 2ms/sample - loss: 0.0067 - val_loss: 0.0846
+Epoch 21/25
+60000/60000 [==============================] - 109s 2ms/sample - loss: 0.0067 - val_loss: 0.0803
+Epoch 22/25
+60000/60000 [==============================] - 115s 2ms/sample - loss: 0.0066 - val_loss: 0.0819
+Epoch 23/25
+60000/60000 [==============================] - 106s 2ms/sample - loss: 0.0066 - val_loss: 0.0829
+Epoch 24/25
+60000/60000 [==============================] - 106s 2ms/sample - loss: 0.0065 - val_loss: 0.0823
+Epoch 25/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0065 - val_loss: 0.0852
+[INFO] making predictions...
+
+C:\Users\Maria Lindblad\Documents\KTH\Årskurs 4\Deep Learning\Deeplearning-project>python train_denoising_autoencoder.py --output outputs/output_denoising_border.png --plot plots/plot_denoising_border.png --noise border
+[INFO] loading MNIST dataset...
+[INFO] building autoencoder...
+2020-05-04 00:52:59.779860: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+Train on 60000 samples, validate on 10000 samples
+Epoch 1/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0195 - val_loss: 0.0115
+Epoch 2/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0106 - val_loss: 0.0096
+Epoch 3/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0095 - val_loss: 0.0091
+Epoch 4/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0089 - val_loss: 0.0092
+Epoch 5/25
+60000/60000 [==============================] - 105s 2ms/sample - loss: 0.0085 - val_loss: 0.0084
+Epoch 6/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0082 - val_loss: 0.0082
+Epoch 7/25
+60000/60000 [==============================] - 104s 2ms/sample - loss: 0.0080 - val_loss: 0.0080
+Epoch 8/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0078 - val_loss: 0.0080
+Epoch 9/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0077 - val_loss: 0.0076
+Epoch 10/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0075 - val_loss: 0.0079
+Epoch 11/25
+60000/60000 [==============================] - 109s 2ms/sample - loss: 0.0074 - val_loss: 0.0075
+Epoch 12/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0073 - val_loss: 0.0075
+Epoch 13/25
+60000/60000 [==============================] - 106s 2ms/sample - loss: 0.0073 - val_loss: 0.0075
+Epoch 14/25
+60000/60000 [==============================] - 110s 2ms/sample - loss: 0.0072 - val_loss: 0.0073
+Epoch 15/25
+60000/60000 [==============================] - 105s 2ms/sample - loss: 0.0071 - val_loss: 0.0073
+Epoch 16/25
+60000/60000 [==============================] - 104s 2ms/sample - loss: 0.0070 - val_loss: 0.0072
+Epoch 17/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0070 - val_loss: 0.0072
+Epoch 18/25
+60000/60000 [==============================] - 110s 2ms/sample - loss: 0.0069 - val_loss: 0.0071
+Epoch 19/25
+60000/60000 [==============================] - 105s 2ms/sample - loss: 0.0069 - val_loss: 0.0071
+Epoch 20/25
+60000/60000 [==============================] - 105s 2ms/sample - loss: 0.0068 - val_loss: 0.0071
+Epoch 21/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0068 - val_loss: 0.0071
+Epoch 22/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0068 - val_loss: 0.0071
+Epoch 23/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0067 - val_loss: 0.0070
+Epoch 24/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0067 - val_loss: 0.0070
+Epoch 25/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0067 - val_loss: 0.0070
+[INFO] making predictions...
+
+C:\Users\Maria Lindblad\Documents\KTH\Årskurs 4\Deep Learning\Deeplearning-project>python train_denoising_autoencoder.py --output outputs/output_denoising_noNoise.png --plot plots/plot_denoising_noNoise.png --noise noNoise
+[INFO] loading MNIST dataset...
+[INFO] building autoencoder...
+2020-05-04 01:37:43.663887: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+Train on 60000 samples, validate on 10000 samples
+Epoch 1/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0184 - val_loss: 0.0107
+Epoch 2/25
+60000/60000 [==============================] - 109s 2ms/sample - loss: 0.0103 - val_loss: 0.0093
+Epoch 3/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0093 - val_loss: 0.0089
+Epoch 4/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0087 - val_loss: 0.0084
+Epoch 5/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0084 - val_loss: 0.0083
+Epoch 6/25
+60000/60000 [==============================] - 110s 2ms/sample - loss: 0.0081 - val_loss: 0.0080
+Epoch 7/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0078 - val_loss: 0.0076
+Epoch 8/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0077 - val_loss: 0.0076
+Epoch 9/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0075 - val_loss: 0.0074
+Epoch 10/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0074 - val_loss: 0.0076
+Epoch 11/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0073 - val_loss: 0.0073
+Epoch 12/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0072 - val_loss: 0.0073
+Epoch 13/25
+60000/60000 [==============================] - 106s 2ms/sample - loss: 0.0071 - val_loss: 0.0072
+Epoch 14/25
+60000/60000 [==============================] - 106s 2ms/sample - loss: 0.0070 - val_loss: 0.0071
+Epoch 15/25
+60000/60000 [==============================] - 108s 2ms/sample - loss: 0.0069 - val_loss: 0.0071
+Epoch 16/25
+60000/60000 [==============================] - 106s 2ms/sample - loss: 0.0069 - val_loss: 0.0071
+Epoch 17/25
+60000/60000 [==============================] - 109s 2ms/sample - loss: 0.0068 - val_loss: 0.0070
+Epoch 18/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0068 - val_loss: 0.0069
+Epoch 19/25
+60000/60000 [==============================] - 109s 2ms/sample - loss: 0.0067 - val_loss: 0.0068
+Epoch 20/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0067 - val_loss: 0.0068
+Epoch 21/25
+60000/60000 [==============================] - 105s 2ms/sample - loss: 0.0066 - val_loss: 0.0068
+Epoch 22/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0066 - val_loss: 0.0069
+Epoch 23/25
+60000/60000 [==============================] - 109s 2ms/sample - loss: 0.0066 - val_loss: 0.0069
+Epoch 24/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0065 - val_loss: 0.0067
+Epoch 25/25
+60000/60000 [==============================] - 107s 2ms/sample - loss: 0.0065 - val_loss: 0.0068
+[INFO] making predictions...
+
+C:\Users\Maria Lindblad\Documents\KTH\Årskurs 4\Deep Learning\Deeplearning-project>python train_denoising_multi_autoencoder.py --output outputs/output_denoising_multi_AE.png --plot plots/plot_denoising_multi_AE.png
+[INFO] loading MNIST dataset...
+[INFO] building model...
+Loading existing autoencoders...
+2020-05-04 02:22:43.300685: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+Train on 60000 samples, validate on 10000 samples
+Epoch 1/25
+60000/60000 [==============================] - 516s 9ms/sample - loss: 0.0114 - val_loss: 0.0215
+Epoch 2/25
+60000/60000 [==============================] - 512s 9ms/sample - loss: 0.0096 - val_loss: 0.0216
+Epoch 3/25
+60000/60000 [==============================] - 516s 9ms/sample - loss: 0.0089 - val_loss: 0.0201
+Epoch 4/25
+60000/60000 [==============================] - 516s 9ms/sample - loss: 0.0083 - val_loss: 0.0187
+Epoch 5/25
+60000/60000 [==============================] - 515s 9ms/sample - loss: 0.0077 - val_loss: 0.0188
+Epoch 6/25
+60000/60000 [==============================] - 514s 9ms/sample - loss: 0.0073 - val_loss: 0.0189
+Epoch 7/25
+60000/60000 [==============================] - 517s 9ms/sample - loss: 0.0071 - val_loss: 0.0188
+Epoch 8/25
+60000/60000 [==============================] - 515s 9ms/sample - loss: 0.0068 - val_loss: 0.0198
+Epoch 9/25
+60000/60000 [==============================] - 513s 9ms/sample - loss: 0.0067 - val_loss: 0.0198
+Epoch 10/25
+60000/60000 [==============================] - 514s 9ms/sample - loss: 0.0065 - val_loss: 0.0176
+Epoch 11/25
+60000/60000 [==============================] - 521s 9ms/sample - loss: 0.0064 - val_loss: 0.0186
+Epoch 12/25
+60000/60000 [==============================] - 516s 9ms/sample - loss: 0.0062 - val_loss: 0.0179
+Epoch 13/25
+60000/60000 [==============================] - 497s 8ms/sample - loss: 0.0061 - val_loss: 0.0184
+Epoch 14/25
+60000/60000 [==============================] - 497s 8ms/sample - loss: 0.0060 - val_loss: 0.0178
+Epoch 15/25
+60000/60000 [==============================] - 492s 8ms/sample - loss: 0.0059 - val_loss: 0.0182
+Epoch 16/25
+60000/60000 [==============================] - 494s 8ms/sample - loss: 0.0058 - val_loss: 0.0186
+Epoch 17/25
+60000/60000 [==============================] - 494s 8ms/sample - loss: 0.0058 - val_loss: 0.0184
+Epoch 18/25
+60000/60000 [==============================] - 496s 8ms/sample - loss: 0.0057 - val_loss: 0.0176
+Epoch 19/25
+60000/60000 [==============================] - 493s 8ms/sample - loss: 0.0056 - val_loss: 0.0179
+Epoch 20/25
+60000/60000 [==============================] - 493s 8ms/sample - loss: 0.0056 - val_loss: 0.0183
+Epoch 21/25
+60000/60000 [==============================] - 493s 8ms/sample - loss: 0.0055 - val_loss: 0.0182
+Epoch 22/25
+60000/60000 [==============================] - 496s 8ms/sample - loss: 0.0054 - val_loss: 0.0181
+Epoch 23/25
+60000/60000 [==============================] - 492s 8ms/sample - loss: 0.0054 - val_loss: 0.0174
+Epoch 24/25
+60000/60000 [==============================] - 494s 8ms/sample - loss: 0.0053 - val_loss: 0.0192
+Epoch 25/25
+60000/60000 [==============================] - 494s 8ms/sample - loss: 0.0053 - val_loss: 0.0185
+[INFO] making predictions...
