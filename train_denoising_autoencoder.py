@@ -13,6 +13,7 @@ import numpy as np
 import argparse
 import cv2
 
+
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-s", "--samples", type=int, default=8,
@@ -57,15 +58,15 @@ elif args["noise"] == "noNoise":
 
 # initialize convolutional autoencoder
 cae = ConvAutoencoder()
-file_path = '.\convnetDenoisingAE' + args["noise"]
-if os.path.isdir(file_path):
+file_path = '.\models\convnetDenoisingAE' + args["noise"] + '.h5'
+if os.path.isfile(file_path):
         # loading existing model
         print ("Loading existing model...")
         autoencoder = cae.load_model(file_path)
 else:
     # construct our convolutional autoencoder
     print("[INFO] building autoencoder...")
-    autoencoder = cae.build(28, 28, 1)
+    autoencoder = cae.build(28, 28, 1, args["noise"])
     opt = Adam(lr=1e-3)
     autoencoder.compile(loss="mse", optimizer=opt)
     # train the convolutional autoencoder

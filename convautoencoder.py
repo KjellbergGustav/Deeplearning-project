@@ -8,9 +8,12 @@ from tensorflow.keras.layers import Flatten
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.layers import Reshape
 from tensorflow.keras.layers import Input
-from tensorflow.keras.models import Model, save_model, load_model
+from tensorflow.keras.models import Model, load_model
 from tensorflow.keras import backend as K
+import tensorflow as tf
 import numpy as np
+import h5py
+
 
 class ConvAutoencoder:
 
@@ -19,7 +22,7 @@ class ConvAutoencoder:
         self.decoder = None
         self.autoencoder = None
 
-    def build(self, width, height, depth, filters=(32, 64), latentDim=16):
+    def build(self, width, height, depth, model_name, filters=(32, 64), latentDim=16):
         # initialize the input shape to be "channels last" along with
         # the channels dimension itself
         # channels dimension itself
@@ -66,15 +69,15 @@ class ConvAutoencoder:
         
         # build the decoder model
         self.decoder = Model(latentInputs, outputs, name="decoder")
-        
+
         # our autoencoder is the encoder + decoder
-        self.autoencoder = Model(inputs, self.decoder(self.encoder(inputs)), name="autoencoder")
+        self.autoencoder = Model(inputs, self.decoder(self.encoder(inputs)), name=model_name)
         
         # return a 3-tuple of the encoder, decoder, and autoencoder
         return self.autoencoder
 
     def save_model(self, file_path):
-        save_model(self.autoencoder, file_path)
+        self.autoencoder.save(file_path)
 
     def load_model(self, file_path):
         self.autoencoder = load_model(file_path)
