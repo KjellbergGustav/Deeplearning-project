@@ -4,3 +4,4 @@ python train_denoising_autoencoder.py --output outputs/output_denoising_saltAndP
 python train_denoising_autoencoder.py --output outputs/output_denoising_block.png --plot plots/plot_denoising_block.png --noise block
 python train_denoising_autoencoder.py --output outputs/output_denoising_border.png --plot plots/plot_denoising_border.png --noise border
 python train_denoising_autoencoder.py --output outputs/output_denoising_noNoise.png --plot plots/plot_denoising_noNoise.png --noise noNoise
+python train_denoising_autoencoder.py --output outputs/output_denoising_alNoises.png --plot plots/plot_denoising_allNoises.png --noise allNoises

@@ -15,8 +15,6 @@ import cv2
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("-s", "--samples", type=int, default=8,
-    help="# number of samples to visualize when decoding")
 ap.add_argument("-o", "--output", type=str, default="outputs/output.png",
     help="path to output visualization file")
 ap.add_argument("-p", "--plot", type=str, default="plots/plot.png",
@@ -113,3 +111,29 @@ for i in lst[0::500]:
 
 # save the outputs image to disk
 cv2.imwrite(args["output"], outputs)
+
+
+# evalute model on different noises
+_, testXNoisy = Noises.gaussian(trainX, testX)
+print("Evaluate model on Gaussian noise:")
+autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+
+_, testXNoisy = Noises.speckle(trainX, testX)
+print("Evaluate model on Speckle noise:")
+autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+
+_, testXNoisy = Noises.salt_and_pepper(trainX, testX)
+print("Evaluate model on Salt&Pepper noise:")
+autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+
+_, testXNoisy = Noises.block(trainX, testX)
+print("Evaluate model on Block noise:")
+autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+
+_, testXNoisy = Noises.border(trainX, testX)
+print("Evaluate model on Border noise:")
+autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+
+testXNoisy = np.copy(testX)
+print("Evaluate model on no noise:")
+autoencoder.evaluate(testXNoisy, testX, batch_size=BS)

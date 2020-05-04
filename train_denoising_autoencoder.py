@@ -16,8 +16,6 @@ import cv2
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("-s", "--samples", type=int, default=8,
-    help="# number of samples to visualize when decoding")
 ap.add_argument("-o", "--output", type=str, default="outputs/output.png",
     help="path to output visualization file")
 ap.add_argument("-p", "--plot", type=str, default="plots/plot.png",
@@ -55,6 +53,19 @@ elif args["noise"] == "border":
 elif args["noise"] == "noNoise":
     trainXNoisy = np.copy(trainX)
     testXNoisy = np.copy(testX)
+elif args["noise"] == "allNoises":
+    numberOfTrainX = len(trainX)//6
+    numberOfTestX = len(testX)//6
+
+    trainXNoisyGaussian, testXNoisyGaussian = Noises.gaussian(trainX[:numberOfTrainX], testX[:numberOfTestX])
+    trainXNoisySpeckle, testXNoisySpeckle = Noises.speckle(trainX[numberOfTrainX:numberOfTrainX*2], testX[numberOfTestX:numberOfTestX*2])
+    trainXNoisySaltAndPepper, testXNoisySaltAndPepper = Noises.salt_and_pepper(trainX[numberOfTrainX*2:numberOfTrainX*3], testX[numberOfTestX*2:numberOfTestX*3])
+    trainXNoisyBlock, testXNoisyBlock = Noises.block(trainX[numberOfTrainX*3:numberOfTrainX*4], testX[numberOfTestX*3:numberOfTestX*4])
+    trainXNoisyBorder, testXNoisyBorder = Noises.border(trainX[numberOfTrainX*4:numberOfTrainX*5], testX[numberOfTestX*4:numberOfTestX*5])
+    trainXNoisyNoNoise, testXNoisyNoNoise = trainX[numberOfTrainX*5:], testX[numberOfTestX*5:]
+
+    trainXNoisy = np.concatenate((trainXNoisyGaussian, trainXNoisySpeckle, trainXNoisySaltAndPepper, trainXNoisyBlock, trainXNoisyBorder, trainXNoisyNoNoise))
+    testXNoisy = np.concatenate((testXNoisyGaussian, testXNoisySpeckle, testXNoisySaltAndPepper, testXNoisyBlock, testXNoisyBorder, testXNoisyNoNoise))
 
 # initialize convolutional autoencoder
 cae = ConvAutoencoder()
@@ -96,8 +107,8 @@ print("[INFO] making predictions...")
 decoded = autoencoder.predict(testXNoisy)
 outputs = None
 
-# loop over our number of output samples
-for i in range(0, args["samples"]):
+lst = list(range(len(decoded)))
+for i in lst[0::500]:
     # grab the original image and reconstructed image
     original = (testXNoisy[i] * 255).astype("uint8")
     recon = (decoded[i] * 255).astype("uint8")
@@ -117,3 +128,30 @@ for i in range(0, args["samples"]):
 
 # save the outputs image to disk
 cv2.imwrite(args["output"], outputs)
+
+
+# evalute model on different noises
+_, testXNoisy = Noises.gaussian(trainX, testX)
+print("Evaluate model on Gaussian noise:")
+autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+
+_, testXNoisy = Noises.speckle(trainX, testX)
+print("Evaluate model on Speckle noise:")
+autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+
+_, testXNoisy = Noises.salt_and_pepper(trainX, testX)
+print("Evaluate model on Salt&Pepper noise:")
+autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+
+_, testXNoisy = Noises.block(trainX, testX)
+print("Evaluate model on Block noise:")
+autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+
+_, testXNoisy = Noises.border(trainX, testX)
+print("Evaluate model on Border noise:")
+autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+
+testXNoisy = np.copy(testX)
+print("Evaluate model on no noise:")
+autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+
