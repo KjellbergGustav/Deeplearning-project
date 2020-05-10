@@ -17,31 +17,34 @@ class MultiAE:
     def build(self, height, width, depth, filters=(32, 64), latentDim=16):
         inputShape = (height, width, depth)
         inputs = Input(shape=inputShape)
-
+        cur_path = os.path.dirname(__file__)
+        macPath = os.path.join(cur_path,'models/sig_last_final_')
+        #winPath = os.path.join(cur_path, '.\models\');
+        path = macPath
         # loading existing model
         print ("Loading existing autoencoders...")
 
-        file_path = '.\models\convnetDenoisingAEgaussian.h5'
+        file_path = path+'convnetDenoisingAEgaussian.h5'
         if os.path.isfile(file_path):
                 cae = ConvAutoencoder()
                 autoencoder_gaussian = cae.load_model(file_path)
-        file_path = '.\models\convnetDenoisingAEspeckle.h5'
+        file_path = path+'convnetDenoisingAEspeckle.h5'
         if os.path.isfile(file_path):
                 cae = ConvAutoencoder()
                 autoencoder_speckle = cae.load_model(file_path)
-        file_path = '.\models\convnetDenoisingAEsaltAndPepper.h5'
+        file_path = path+'convnetDenoisingAEsaltAndPepper.h5'
         if os.path.isfile(file_path):
                 cae = ConvAutoencoder()
                 autoencoder_saltAndPepper = cae.load_model(file_path)
-        file_path = '.\models\convnetDenoisingAEblock.h5'
+        file_path = path+'convnetDenoisingAEblock.h5'
         if os.path.isfile(file_path):
                 cae = ConvAutoencoder()
                 autoencoder_block = cae.load_model(file_path)
-        file_path = '.\models\convnetDenoisingAEborder.h5'
+        file_path = path+'convnetDenoisingAEborder.h5'
         if os.path.isfile(file_path):
                 cae = ConvAutoencoder()
                 autoencoder_border = cae.load_model(file_path)
-        file_path = '.\models\convnetDenoisingAEnoNoise.h5'
+        file_path = path+'convnetDenoisingAEnoNoise.h5'
         if os.path.isfile(file_path):
                 cae = ConvAutoencoder()
                 autoencoder_no_noise = cae.load_model(file_path)
@@ -60,11 +63,11 @@ class MultiAE:
 
         # reshaping to fit input/output
         combined = Dense(1, input_shape=(6,))(combined)
-        combined = Reshape((28,28,1))(combined)
+        #combined = Reshape((28,28,1))(combined)
 
         # apply RELU => LINEAR (Don't know if this is needed)
         x = Activation("relu")(combined)
-        x = Activation("linear")(x)
+        x = Activation("tanh")(x)
         
         # out models is the combined autoencoders 
         self.model = Model(inputs=inputs, outputs=x)

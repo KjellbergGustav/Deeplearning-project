@@ -8,11 +8,16 @@ from multiAE import MultiAE
 from noises import Noises
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.datasets import mnist
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
+import tensorflow as tf
 import matplotlib.pyplot as plt
 import numpy as np
 import argparse
 import cv2
+import os.path
+import os
 
+os.environ['KMP_DUPLICATE_LIB_OK']='True'
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-o", "--output", type=str, default="outputs/output.png",
@@ -51,7 +56,14 @@ testXNoisy = np.concatenate((testXNoisyGaussian, testXNoisySpeckle, testXNoisySa
 
 # initialize convolutional autoencoder
 mnn = MultiAE()
-file_path = '.\models\multiAE.h5'
+
+# If mac use below
+cur_path = os.path.dirname(__file__)
+file_path = os.path.join(cur_path,'models/sig_final_best_multiAE_tan.h5')
+
+# If windows use below
+#file_path = '.\models\multiAE.h5'
+
 if os.path.isfile(file_path):
         # loading existing model
         print ("Loading existing model...")
@@ -62,12 +74,18 @@ else:
     autoencoder = mnn.build(28, 28, 1)
     opt = Adam(lr=1e-3)
     autoencoder.compile(loss="mse", optimizer=opt)
+
+    # Set early stopping
+    #es = EarlyStopping(monitor='val_loss', mode='min', verbose=1, min_delta=[...])
+    mc = ModelCheckpoint('models/sig_last_final_best_multi.h5', monitor='val_loss', mode='min', verbose=1, save_best_only=True)
+    # fit model
     # train the convolutional autoencoder
     H = autoencoder.fit(
         trainXNoisy, trainX,
         validation_data=(testXNoisy, testX),
         epochs=EPOCHS,
-        batch_size=BS)
+        batch_size=BS,
+        callbacks=[mc])
     # save model
     mnn.save_model(file_path)
 
@@ -100,6 +118,11 @@ for i in lst[0::500]:
     # stack the original and reconstructed image side-by-side
     output = np.hstack([original, recon, noNoise])
     
+    """im1 = tf.image.convert_image_dtype(noNoise, tf.float32)
+    im2 = tf.image.convert_image_dtype(recon, tf.float32)
+    psnrVal = tf.image.psnr(im1, im2, max_val=1.0)
+    print(psnrVal)"""
+
     # if the outputs array is empty, initialize it as the current
     # side-by-side image display
     if outputs is None:
@@ -112,11 +135,41 @@ for i in lst[0::500]:
 # save the outputs image to disk
 cv2.imwrite(args["output"], outputs)
 
-
 # evalute model on different noises
 _, testXNoisy = Noises.gaussian(trainX, testX)
 print("Evaluate model on Gaussian noise:")
-autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+lossGauss = autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+
+
+_, testXNoisy = Noises.speckle(trainX, testX)
+print("Evaluate model on Speckle noise:")
+lossSpeckle = autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+
+_, testXNoisy = Noises.salt_and_pepper(trainX, testX)
+print("Evaluate model on Salt&Pepper noise:")
+lossS_P = autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+
+_, testXNoisy = Noises.block(trainX, testX)
+print("Evaluate model on Block noise:")
+lossBlock = autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+
+_, testXNoisy = Noises.border(trainX, testX)
+print("Evaluate model on Border noise:")
+lossBorder = autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+
+testXNoisy = np.copy(testX)
+print("Evaluate model on no noise:")
+lossNone = autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+
+print('Loss: Gauss, speckle, S_P, Block, Border, None')
+print('Loss: ', lossGauss, " ", lossSpeckle, " ", lossS_P, " ", lossBlock, " ", lossBorder, " ", lossNone)
+
+"""# evalute model on different noises
+_, testXNoisy = Noises.gaussian(trainX, testX)
+print("Evaluate model on Gaussian noise:")
+test = autoencoder.evaluate(testXNoisy, testX, batch_size=BS, use_multiprocessing=False) 
+print(autoencoder.metrics_names)
+print(test)
 
 _, testXNoisy = Noises.speckle(trainX, testX)
 print("Evaluate model on Speckle noise:")
@@ -136,4 +189,31 @@ autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
 
 testXNoisy = np.copy(testX)
 print("Evaluate model on no noise:")
-autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+# evalute model on different noises
+_, testXNoisy = Noises.gaussian(trainX, testX)
+print("Evaluate model on Gaussian noise:")
+lossGauss = autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+
+
+_, testXNoisy = Noises.speckle(trainX, testX)
+print("Evaluate model on Speckle noise:")
+lossSpeckle = autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+
+_, testXNoisy = Noises.salt_and_pepper(trainX, testX)
+print("Evaluate model on Salt&Pepper noise:")
+lossS_P = autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+
+_, testXNoisy = Noises.block(trainX, testX)
+print("Evaluate model on Block noise:")
+lossBlock = autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+
+_, testXNoisy = Noises.border(trainX, testX)
+print("Evaluate model on Border noise:")
+lossBorder = autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+
+testXNoisy = np.copy(testX)
+print("Evaluate model on no noise:")
+lossNone = autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+
+print('Loss: Gauss, speckle, S_P, Block, Border, None')
+print('Loss: ', lossGauss, " ", lossSpeckle, " ", lossS_P, " ", lossBlock, " ", lossBorder, " ", lossNone)"""
