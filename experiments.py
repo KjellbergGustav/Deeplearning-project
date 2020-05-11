@@ -12,6 +12,7 @@ import argparse
 import cv2
 import os.path
 import os
+from convautoencoder import ConvAutoencoder
 
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
 
@@ -49,17 +50,27 @@ cur_path = os.path.dirname(__file__)
 #file_path = os.path.join(cur_path,'models/sig_last_final_best_multi.h5')
 
 # ------ AE all noises -------
-file_path = os.path.join(cur_path,'models/sig_last_final_convnetDenoisingAEnoNoise.h5')
+file_path = os.path.join(cur_path,'models/sig_final_best_multiAE_tan.h5')
 
 # If windows use below
 #file_path = '.\models\multiAE.h5'
 # loading existing model
 
 print ("Loading existing model...")
-autoencoder = mnn.load_model(file_path)
+autoencoder_mcdncnn = mnn.load_model(file_path)
+
+cae = ConvAutoencoder()
+
+file_path = os.path.join(cur_path,'models/sig_last_final_convnetDenoisingAEallNoises.h5')
+
+cae_allnoises = cae.load_model(file_path)
 
 
-BatchSizes = [32, 64, 128, 256, 512, 1024]
+
+
+
+
+#BatchSizes = [32, 64, 128, 256, 512, 1024]
 gaussSum = 0
 speckleSum = 0
 s_pSum = 0
@@ -67,13 +78,58 @@ blockSum = 0
 borderSum = 0
 noNoiseSum = 0
 
-for BS in BatchSizes:
+cae_loss = []
+dncnn_loss = []
+#np.random.shuffle(testXNoisy)
+
+p = np.random.permutation(len(testX))
+testX = testX[p] 
+testXNoisy = testXNoisy[p]
+for indexFactor in range(100):
+
+    startIndex = indexFactor*100
+    endIndex = (indexFactor+1)*100
+
+    testSplit = testXNoisy[startIndex:endIndex]
+    labelSplit = testX[startIndex:endIndex]
+    print(indexFactor)
+    loss_cae = cae_allnoises.evaluate(testSplit, labelSplit, batch_size=32, verbose=0)
+
+    cae_loss.append(loss_cae)
+
+    loss_mcdncnn = autoencoder_mcdncnn.evaluate(testSplit, labelSplit, batch_size=32, verbose=0)
+
+    dncnn_loss.append(loss_mcdncnn)
+
+mean_mc = np.mean(dncnn_loss)
+std_mc = np.std(dncnn_loss)
+print("mean McDnCnn: ", np.mean(dncnn_loss))
+print("std McDnCnn: ", np.std(dncnn_loss))
+
+mean_cae = np.mean(cae_loss)
+std_cae = np.std(cae_loss)
+print("mean CAE: ", np.mean(cae_loss))
+print("std CAE: ", np.std(cae_loss))
+
+
+p_top = mean_mc-mean_cae
+p_bot = np.sqrt((np.square(std_cae)/100)+(np.square(std_mc)/100))
+p = p_top/p_bot
+
+print("P-value: ", p)
+
+
+
+
+"""for BS in BatchSizes:
     
+
 
     # evalute model on different noises
     _, testXNoisy = Noises.gaussian(trainX, testX)
     print("Evaluate model on Gaussian noise:")
-    lossGauss = autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+    [lossGauss, acc] = autoencoder.evaluate(testXNoisy, testX, batch_size=BS)
+    print(acc)
     gaussSum += lossGauss
 
     _, testXNoisy = Noises.speckle(trainX, testX)
@@ -113,4 +169,4 @@ print("Block: ", blockSum/len(BatchSizes))
 print("Border: ", borderSum/len(BatchSizes))
 print("No noise: ", noNoiseSum/len(BatchSizes))
 sumAll = gaussSum/len(BatchSizes)+ speckleSum/len(BatchSizes)+s_pSum/len(BatchSizes)+blockSum/len(BatchSizes)+borderSum/len(BatchSizes)+noNoiseSum/len(BatchSizes)
-print("Joint average: ", sumAll/6)
+print("Joint average: ", sumAll/6)"""
